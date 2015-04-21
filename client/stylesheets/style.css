@@ -3,9 +3,9 @@
     border-radius: 3px;
     padding: 10px;
     margin-bottom: 10px;
-    -webkit-box-shadow: 0 1px 1px rgba (0, 0, 0, 0.15);
-    -moz-box-shadow: 0 1px 1px rgba (0, 0, 0, 0.15);
-    box-shadow: 0 1px 1px rgba (0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 }
 
 body {
@@ -44,12 +44,12 @@ body {
     opacity: 1;
 }
 
-.post :before, .post :after {
-    content: " ";
+.post:before, .post:after {
+    content: "";
     display: table;
 }
 
-.post :after {
+.post:after {
     clear: both;
 }
 
@@ -128,7 +128,7 @@ body {
     font-size: 12px;
 }
 
-.comments li p :last-child {
+.comments li p:last-child {
     margin-bottom: 0;
 }
 
@@ -144,16 +144,16 @@ body {
 .load-more {
     display: block;
     border-radius: 3px;
-    background: rgba (0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.05);
     text-align: center;
     height: 60px;
     line-height: 60px;
     margin-bottom: 10px;
 }
 
-.load-more :hover {
+.load-more:hover {
     text-decoration: none;
-    background: rgba (0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .posts .spinner-container {
