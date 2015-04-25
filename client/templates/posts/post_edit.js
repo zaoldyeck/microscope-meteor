@@ -16,7 +16,7 @@ Template.postEdit.events({
          Posts.update(currentPostId, {$set: postProperties}, function (error) {
          if (error) {
          //向用戶顯示錯誤信息
-         alert(error.reason);
+         throwError(error.reason);
          } else {
          Router.go('postPage', {_id: currentPostId});
          }
