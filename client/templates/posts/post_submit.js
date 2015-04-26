@@ -1,6 +1,7 @@
 Template.postSubmit.onCreated(function () {
     Session.set('postSubmitErrors', {});
 });
+
 Template.postSubmit.helpers({
     errorMessage: function (field) {
         return Session.get('postSubmitErrors')[field];
@@ -19,12 +20,16 @@ Template.postSubmit.events({
             title: $(e.target).find('[name=title]').val()
         };
 
+        var errors = validatePost(post);
+        if (errors.title || errors.url)
+            return Session.set('postSubmitErrors', errors);
+
         Meteor.call('postInsert', post, function (error, result) {
-            //顯示錯誤信息並退出
+            //向用戶顯示錯誤信息並終止
             if (error)
                 return throwError(error.reason);
 
-            //顯示結果，跳轉頁面
+            //顯示這個結果且繼續跳轉
             if (result.postExists)
                 throwError('This link has already been posted（該鏈接已經存在）');
 

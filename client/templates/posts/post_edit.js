@@ -1,6 +1,15 @@
-/**
- * Created by zaoldyeck on 2015/4/23.
- */
+Template.postEdit.onCreated(function () {
+    Session.set('postEditErrors', {});
+});
+Template.postEdit.helpers({
+    errorMessage: function (field) {
+        return Session.get('postEditErrors')[field];
+    },
+    errorClass: function (field) {
+        return !!Session.get('postEditErrors')[field] ? 'has-error' : '';
+    }
+});
+
 Template.postEdit.events({
     'submit form': function (e) {
         e.preventDefault();
@@ -11,6 +20,10 @@ Template.postEdit.events({
             url: $(e.target).find('[name=url]').val(),
             title: $(e.target).find('[name=title]').val()
         }
+
+        var errors = validatePost(postProperties);
+        if (errors.title || errors.url)
+            return Session.set('postEditErrors', errors);
 
         /*
          Posts.update(currentPostId, {$set: postProperties}, function (error) {
@@ -27,11 +40,11 @@ Template.postEdit.events({
         Meteor.call('postUpdate', currentPostId, postProperties, function (error, result) {
             //顯示錯誤信息並退出
             if (error)
-                return alert(error.reason);
+                return throwError(error.reason);
 
             //顯示結果，跳轉頁面
             if (result.postExists)
-                alert('This link has already been posted（該鏈接已經存在）');
+                throwError('This link has already been posted（該鏈接已經存在）');
 
             Router.go('postPage', {_id: currentPostId});
         });
