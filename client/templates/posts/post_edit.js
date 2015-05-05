@@ -40,7 +40,8 @@ Template.postEdit.events({
         Meteor.call('postUpdate', currentPostId, postProperties, function (error, result) {
             //顯示錯誤信息並退出
             if (error)
-                return throwError(error.reason);
+            // display the error to the user
+                Errors.throw(error.reason);
 
             //顯示結果，跳轉頁面
             if (result.postExists)
