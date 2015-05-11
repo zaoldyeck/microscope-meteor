@@ -35,6 +35,6 @@ Template.postSubmit.events({
                 throwError('This link has already been posted（該鏈接已經存在）');
 
         });
-        Router.go('postsList');
+        Router.go('home');
     }
 });
